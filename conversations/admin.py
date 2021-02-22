@@ -5,16 +5,16 @@ from . import models
 
 
 @admin.register(models.Message)
-class ListAdmin(admin.ModelAdmin):
+class MessageAdmin(admin.ModelAdmin):
 
     """ Review List Definition """
 
-    pass
+    list_display = ("__str__", "created", "count_messages")
 
 
 @admin.register(models.Conversation)
-class ListAdmin(admin.ModelAdmin):
+class ConversationAdmin(admin.ModelAdmin):
 
     """ Review List Definition """
 
-    pass
+    list_display = ("__str__", "count_participants")

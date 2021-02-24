@@ -1,13 +1,30 @@
-from math import ceil
+from django.views.generic import ListView, DetailView
 from django.shortcuts import render
-from djnago.core.paginator import Paginator
-from . import models
+from rooms import models
 
 # Create your views here.
 
 
-def all_rooms(request):
-    page = request.GET.get("page")
-    room_list = models.Room.objects.all()
-    paginator = Paginator(room_list, 10)
-    return render(request, "rooms/home.html", {})
+class HomeView(ListView):
+    """HomeView Definition"""
+
+    model = models.Room
+    paginate_by = 12
+    paginate_orphans = 5
+    ordering = "created"
+    context_object_name = "rooms"
+
+
+"""
+class RoomDetail(DetailView):
+    RoomDetail Definition
+
+    model = models.Room
+    context_object_name = "rooms"
+    """
+
+
+def search(request):
+    city = request.GET.get("city")
+    city = str.capitalize(city)
+    return render(request, "rooms/search.html", {"city": city})

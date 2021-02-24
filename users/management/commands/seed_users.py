@@ -17,4 +17,4 @@ class Command(BaseCommand):
         seeder = Seed.seeder()
         seeder.add_entity(User, int(number), {"is_staff": False, "is_superuser": False})
         seeder.execute()
-        self.stdout.write(self.style.SUCCESS("Rooms created ! "))
+        self.stdout.write(self.style.SUCCESS("Users created ! ")
